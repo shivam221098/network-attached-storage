@@ -2,3 +2,4 @@
 venv
 .env
 db.sqlite3
+storage/migrations/*_initial.py
