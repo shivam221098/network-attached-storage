@@ -1,10 +1,9 @@
-FROM python:3.10-slim-buster
-RUN mkdir "storage"
+FROM python:3.10-slim-bullseye
 COPY . /storage
 WORKDIR /storage
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-RUN apt-get update
-RUN apt-get install -y libpq-dev
-RUN apt-get install -y python3-pip
-RUN pip install -r requirements.txt
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install --no-install-recommends -y libpq-dev && apt-get clean && rm -rf /var/lib/apt/lists/* && pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000
+ENTRYPOINT [ "/usr/local/bin/python3", "manage.py", "runserver", "0.0.0.0:8000" ]
