@@ -159,3 +159,8 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
+# Static files
+STATIC_ROOT = BASE_DIR / "static/"
+
+# Path to save files
+FILE_PATH_DIRECTORY = Path.home()
