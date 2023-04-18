@@ -16,3 +16,4 @@ class Directory(models.Model):
     file_id = models.AutoField(primary_key=True)
     dir_uuid = models.ForeignKey(StorageUser, on_delete=models.CASCADE)
     file_path = models.FilePathField(path=settings.FILE_PATH_DIRECTORY)
+
