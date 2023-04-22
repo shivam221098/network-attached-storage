@@ -75,17 +75,17 @@ button:hover, button:focus {
   border-color: var(--hover);
   color: #fff;
 }
-body {
-  color: #fff;
-  background: #17181c;
-  font: 300 1em 'Fira Sans', sans-serif;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-}
+/*body {*/
+/*  color: #fff;*/
+/*  background: #17181c;*/
+/*  font: 300 1em 'Fira Sans', sans-serif;*/
+/*  justify-content: center;*/
+/*  align-content: center;*/
+/*  align-items: center;*/
+/*  text-align: center;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*}*/
 button {
   background: none;
   border: 2px solid;
