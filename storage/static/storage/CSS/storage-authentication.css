@@ -152,3 +152,10 @@ input::-moz-focus-inner {
   border-color: #26bf47;
   box-shadow: 0 0 10px #26bf47;
 }
+.account-present {
+  margin: 10px;
+  justify-content: center;
+}
+.account-present a {
+  color: papayawhip;
+}
