@@ -1,0 +1,48 @@
+{% extends 'storage/storage-base.html' %}
+{% load static %}
+{% block title %}
+    <title>
+        Sign up
+    </title>
+{% endblock %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/CSS/global/global.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'storage/CSS/storage-authentication.css' %}">
+    <div class="page">
+      <div class="container" style="height: 950px; width: 900px">
+        <div class="left">
+          <div class="login">Signup</div>
+          <div class="eula">
+              By signing up for NAS, you agree to the following terms and conditions:
+              <ol>
+                  <li><b>Data Storage</b> - NAS provides a facility for you to store and manage your personal data.</li>
+                  <li><b>Account Security</b> - You are responsible for maintaining the security of your account,
+                      including the confidentiality of your password. You agree to immediately notify NAS of any
+                      unauthorized use of your account or any other breach of security.</li>
+                  <li><b>Use of the Website</b> - You agree to use NAS for lawful purposes only and not to use the
+                      Website in any way that may violate any applicable laws or regulations.</li>
+                  <li><b>Termination</b> - This Agreement may be terminated by either party at any time, with or without cause.
+                      Upon termination, your access to the Website will be immediately terminated.</li>
+              </ol>
+              By signing up for NAS, you acknowledge that you have read and understood this Agreement and agree to be bound by its terms and conditions.
+          </div>
+        </div>
+        <div class="right">
+          <div class="form signup">
+            <form method="post" action="/signup/">
+              {% csrf_token %}
+              {{ form }}
+                <div style="align-content: center">
+                    <button type="submit" class="offset">Signup</button>
+                </div>
+            </form>
+            <div class="account-present">
+              Already have an account? <a href="/login/">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+{#    <script src="{% static 'storage/JavaScript/storage-signup.js' %}"></script>#}
+{% endblock %}
