@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from .forms import SignUpForm
 from .models import StorageUser
+from . import utils
 import os
 
 
@@ -32,7 +35,7 @@ class SignUpView(generic.CreateView):
 
         dir_obj = StorageUser.objects.get(username=user)
         if dir_obj:
-            dir_name = dir_obj.dir_uuid.urn[9:]
+            dir_name = utils.get_uuid_as_string(dir_obj.dir_uuid)
             path = settings.FILE_PATH_DIRECTORY / dir_name
 
             # check if directory exists
@@ -40,10 +43,6 @@ class SignUpView(generic.CreateView):
                 os.mkdir(path)
 
         return response
-
-
-def home(request: HttpRequest):
-    return render(request, "storage/storage-home.html")
 
 
 def login_user(request: HttpRequest):
@@ -73,8 +72,36 @@ def logout_user(request: HttpRequest):
     return redirect("/")
 
 
-# def create_user_storage_profile(request: HttpRequest):
+def home(request: HttpRequest):
+    return render(request, "storage/storage-home.html")
 
 
+@login_required(login_url="/login/")
 def dashboard(request: HttpRequest):
-    return render(request, "storage/storage-dashboard.html")
+    username = request.user.username
+    storage_result = utils.get_current_user_storage_path(username)
+    user_storage_path = storage_result.get("user_storage_path")
+
+    if user_storage_path:
+        return render(request, "storage/storage-dashboard.html", context={
+            "files": "".join(os.listdir(user_storage_path))
+        })
+
+    return redirect("/")
+
+
+@login_required(login_url="/login/")
+def list_directories(request: HttpRequest, dir_path: str):
+    username = request.user.username
+    storage_result = utils.get_current_user_storage_path(username)
+    user_storage_path = storage_result.get("user_storage_path")
+
+    if user_storage_path:
+        blob_detail = utils.find_valid_path(user_storage_path, dir_path)
+        if blob_detail.get("is_redirect_required"):
+            # if the user has entered a wrong file path url then it will be routed to the correct optimal url
+            return redirect(f"/dashboard/{blob_detail.get('redirect_path')}")
+
+        print(blob_detail.get("files"))
+
+    return HttpResponse("<p>Hello</p>")
