@@ -1,8 +1,17 @@
 {% extends 'storage/storage-base.html' %}
+{% load static %}
 {% block title %}
-<title>Dashboard - NAS</title>
+    <title>Dashboard - NAS</title>
 {% endblock %}
 {% block content %}
-<h1>{{ files }}</h1>
-    <a href="/logout/">Logout</a>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/CSS/storage-dashboard.css' %}">
+    <div class="page">
+        <div class="storage-dir-nav">
+            {% for path in paths %}
+                <div>
+                    <a class="path-btn" href="{{ path.path }}">{{ path.name }}</a> /&nbsp
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

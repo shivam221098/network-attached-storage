@@ -102,6 +102,13 @@ def list_directories(request: HttpRequest, dir_path: str):
             # if the user has entered a wrong file path url then it will be routed to the correct optimal url
             return redirect(f"/dashboard/{blob_detail.get('redirect_path')}")
 
-        print(blob_detail.get("files"))
+        current_dir_files = blob_detail.get("files")
+        backtracking_paths = utils.find_url(f"dashboard/{dir_path}")
+        print(current_dir_files)
+        print(backtracking_paths)
 
-    return HttpResponse("<p>Hello</p>")
+        return render(request, "storage/storage-dashboard.html", context={
+            "paths": backtracking_paths
+        })
+
+    return HttpResponse("<h1>Hello</h1>")

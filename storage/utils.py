@@ -47,3 +47,20 @@ def find_valid_path(user_storage_path: Path, given_path: str, is_redirect_requir
         }
 
     return find_valid_path(user_storage_path, "/".join(given_path.split("/")[:-1]), True)
+
+
+def find_url(endpoint_path: str) -> list:
+    """
+    creates link to all directories
+    """
+    results = []
+    split_path = endpoint_path.split("/")
+    for idx, path in enumerate(split_path):
+        results.append(
+            {
+                "name": path,
+                "path": "/" + "/".join(split_path[:idx + 1])
+            }
+        )
+
+    return results
