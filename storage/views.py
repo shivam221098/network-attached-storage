@@ -76,22 +76,25 @@ def home(request: HttpRequest):
     return render(request, "storage/storage-home.html")
 
 
+# @login_required(login_url="/login/")
+# def dashboard(request: HttpRequest):
+#     username = request.user.username
+#     storage_result = utils.get_current_user_storage_path(username)
+#     user_storage_path = storage_result.get("user_storage_path")
+#
+#     if user_storage_path:
+#         blob_detail = utils.find_valid_path(user_storage_path, "")
+#         current_dir_files = blob_detail.get("files")
+#
+#         return render(request, "storage/storage-dashboard.html", context={
+#             "files": current_dir_files
+#         })
+#
+#     return redirect("/")
+
+
 @login_required(login_url="/login/")
-def dashboard(request: HttpRequest):
-    username = request.user.username
-    storage_result = utils.get_current_user_storage_path(username)
-    user_storage_path = storage_result.get("user_storage_path")
-
-    if user_storage_path:
-        return render(request, "storage/storage-dashboard.html", context={
-            "files": "".join(os.listdir(user_storage_path))
-        })
-
-    return redirect("/")
-
-
-@login_required(login_url="/login/")
-def list_directories(request: HttpRequest, dir_path: str):
+def list_directories(request: HttpRequest, dir_path: str = ""):
     username = request.user.username
     storage_result = utils.get_current_user_storage_path(username)
     user_storage_path = storage_result.get("user_storage_path")
@@ -104,11 +107,16 @@ def list_directories(request: HttpRequest, dir_path: str):
 
         current_dir_files = blob_detail.get("files")
         backtracking_paths = utils.find_url(f"dashboard/{dir_path}")
-        print(current_dir_files)
-        print(backtracking_paths)
 
         return render(request, "storage/storage-dashboard.html", context={
-            "paths": backtracking_paths
+            "paths": backtracking_paths,
+            "files": current_dir_files
         })
 
     return HttpResponse("<h1>Hello</h1>")
+
+
+def upload_files(request: HttpRequest):
+    """
+    uploads files to theirs respective account owner's directories
+    """

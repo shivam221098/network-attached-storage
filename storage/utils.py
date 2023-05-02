@@ -37,7 +37,8 @@ def find_valid_path(user_storage_path: Path, given_path: str, is_redirect_requir
         return {
             "files": [
                 {
-                    "file": path / blob,
+                    "file_path": path / blob,
+                    "file_name": blob,
                     "is_dir": os.path.isdir(path / blob)
                 }
                 for blob in os.listdir(path)

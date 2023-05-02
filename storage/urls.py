@@ -12,7 +12,7 @@ if not os.path.exists(settings.FILE_PATH_DIRECTORY):
 urlpatterns = [
     path("", views.home, name="storage_home"),
     path("login/", views.login_user, name="storage_login"),
-    path("dashboard/", views.dashboard, name="storage_dashboard"),
+    path("dashboard/", views.list_directories, name="storage_dashboard"),
     path("dashboard/<path:dir_path>/", views.list_directories, name="storage_dir_path"),
     path("logout/", views.logout_user, name="storage_logout"),
     path("signup/", views.SignUpView.as_view(), name="storage_signup"),

@@ -13,5 +13,15 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="storage-dir-files">
+            <table>
+                {% for file in files %}
+                    <tr>
+                        <td>{{ file.file_name }}</td>
+                        <td>{{ file.file_path }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock %}
