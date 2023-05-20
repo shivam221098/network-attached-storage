@@ -3,3 +3,4 @@ bcrypt==4.0.1
 Django==4.2
 python-dotenv==1.0.0
 sqlparse==0.4.3
+psycopg2-binary==2.9.6
