@@ -6,7 +6,11 @@
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'storage/CSS/storage-dashboard.css' %}">
     <div class="page">
-        <div class="storage-dir-nav">
+        <div class="dashboard-content">
+            <div class="">
+
+            </div>
+            <div class="storage-dir-nav">
             {% for path in paths %}
                 <div>
                     <a class="path-btn" href="{{ path.path }}">{{ path.name }}</a> /&nbsp
@@ -22,6 +26,10 @@
                     </tr>
                 {% endfor %}
             </table>
+        </div>
+        <a href="/logout">
+            Logout
+        </a>
         </div>
     </div>
 {% endblock %}

@@ -1,25 +1,39 @@
 body {
-  background: white;
-  font-family: 'Inter UI', sans-serif;
-  margin: 0;
+    background: white;
+    font-family: 'Inter UI', sans-serif;
+    margin: 0;
 }
 .page {
-  color: #FFF;
-  background-color: #FD940A;
-  background-image: radial-gradient(circle, #F9A72B 0%, #FA9026 70%, #FB6C1F 100%);
-  height: 100%;
-  position: absolute;
-  width: 100%;
+    color: #FFF;
+    background-color: #FD940A;
+    background-image: radial-gradient(circle, #F9A72B 0%, #FA9026 70%, #FB6C1F 100%);
+    height: 100%;
+    position: absolute;
+    width: 100%;
 }
 .storage-dir-nav{
-  display: flex;
+    display: flex;
+}
+.storage-dir-files td{
+    color: black;
 }
 .path-btn{
-  cursor: pointer;
-  border: 1px solid #3498db;
-  background-color: transparent;
-  height: 50px;
-  width: 200px;
-  color: black;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    border: 1px solid #3498db;
+    background-color: transparent;
+    height: 50px;
+    width: 200px;
+    color: black;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+}
+.dashboard-content{
+    margin: 100px;
+    border: 1px solid #666;
+    background-color: whitesmoke;
+    animation: shadow 10s infinite;
+}
+@keyframes shadow {
+    50% {
+        box-shadow: 5px 10px 15px black;
+    }
 }
