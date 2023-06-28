@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+
 body {
     background: white;
     font-family: 'Inter UI', sans-serif;
@@ -11,8 +14,14 @@ body {
     position: absolute;
     width: 100%;
 }
+.storage-dir{
+    margin-top: 50px;
+}
 .storage-dir-nav{
     display: flex;
+}
+.storage-dir-files{
+    margin-top: 25px;
 }
 .storage-dir-files td{
     color: black;
@@ -27,13 +36,30 @@ body {
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
 }
 .dashboard-content{
-    margin: 100px;
+    margin: 50px;
     border: 1px solid #666;
     background-color: whitesmoke;
     animation: shadow 10s infinite;
+}
+.inner-dashboard{
+    margin: 10px;
+}
+.dashboard-content-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard-content-nav .search{
+    width: 750px;
+    height: 25px;
+}
+.dashboard-content-nav .button{
+    width: 100px;
+    height: 50px;
 }
 @keyframes shadow {
     50% {
         box-shadow: 5px 10px 15px black;
     }
 }
+

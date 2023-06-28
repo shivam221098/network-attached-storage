@@ -7,30 +7,38 @@
     <link rel="stylesheet" type="text/css" href="{% static 'storage/CSS/storage-dashboard.css' %}">
     <div class="page">
         <div class="dashboard-content">
-            <div class="">
-{#                add a nav bar where new folder option will be there, directory name can be there. a elastic search can also be there #}
-
-            </div>
-            <div class="storage-dir-nav">
-            {% for path in paths %}
-                <div>
-                    <a class="path-btn" href="{{ path.path }}">{{ path.name }}</a> /&nbsp
+            <div class="inner-dashboard">
+                <div class="dashboard-content-nav">
+    {#                add a nav bar where new folder option will be there, directory name can be there. a elastic search can also be there #}
+                        <input class="search" type="text" placeholder="Search" onchange="console.log('Hello')">
+                        <button>
+                            New Folder
+                        </button>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="storage-dir-files">
-            <table>
-                {% for file in files %}
-                    <tr>
-                        <td>{{ file.file_name }}</td>
-                        <td>{{ file.file_path }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <a href="/logout">
-            Logout
-        </a>
+                <div class="storage-dir">
+                    <div class="storage-dir-nav">
+                        {% for path in paths %}
+                            <div>
+                                <a class="path-btn" href="{{ path.path }}">{{ path.name }}</a> /&nbsp
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="storage-dir-files">
+                        <table>
+                            {% for file in files %}
+                                <tr>
+                                    <td>{{ file.file_name }}</td>
+                                    <td>{{ file.file_path }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <a href="/logout">
+                        Logout
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="{% static 'storage/JavaScript/storage-dashboard.js' %}"></script>
 {% endblock %}
